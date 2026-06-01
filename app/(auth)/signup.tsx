@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { supabase } from "../../lib/supabase";
-import {router} from "expo-router";
+import {Link, router} from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 
 export default function SignupScreen() {
   const [email, setEmail] = useState("");
@@ -20,7 +22,7 @@ export default function SignupScreen() {
       email,
       password,
     });
-    console.log("Logged in :", data);
+    // console.log("Logged in :", data);
 
     setLoading(false);
 
@@ -34,12 +36,12 @@ export default function SignupScreen() {
       "Check your email to confirm your account (if email confirmation is enabled)."
     );
 
-    console.log("User:", data.user);
-    router.replace("/(auth)/setup"); 
+    // console.log("User:", data.user);
+    router.replace("/onBoarding"); 
   };
 
   return (
-    <View style={{ padding: 20, gap: 12 }}>
+    <SafeAreaView style={{ padding: 20, gap: 12 }}>
       <Text style={{ fontSize: 24, fontWeight: "600" }}>Create account</Text>
 
       <TextInput
@@ -81,6 +83,8 @@ export default function SignupScreen() {
           {loading ? "Creating..." : "Sign up"}
         </Text>
       </Pressable>
-    </View>
+
+      <Link href="/(auth)/signin">Already have an account?</Link>
+    </SafeAreaView>
   );
 }

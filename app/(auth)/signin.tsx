@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { supabase } from "../../lib/supabase";
-import {router } from "expo-router";
+import {router, Link } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SigninScreen() {
   const [email, setEmail] = useState("");
@@ -29,14 +30,14 @@ export default function SigninScreen() {
     }
 
     Alert.alert("Success", "Logged in successfully");
-    console.log("Session:", data.session);
-    console.log("User:", data.user);
+    // console.log("Session:", data.session);
+    // console.log("User:", data.user);
 
     router.replace("/(tabs)/home"); // Redirect to home.
   };
 
   return (
-    <View style={{ padding: 20, gap: 12 }}>
+    <SafeAreaView style={{ padding: 20, gap: 12 }}>
       <Text style={{ fontSize: 24, fontWeight: "600" }}>Sign in</Text>
 
       <TextInput
@@ -70,6 +71,8 @@ export default function SigninScreen() {
           {loading ? "Signing in..." : "Sign in"}
         </Text>
       </Pressable>
-    </View>
+
+      <Link href="/signup">New User?</Link>
+    </SafeAreaView>
   );
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
-import { supabase } from "../../lib/supabase";
+import { supabase } from "../lib/supabase";
 import { router } from "expo-router";
 
 export default function Setup() {

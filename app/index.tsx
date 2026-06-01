@@ -1,7 +1,16 @@
-import { Link } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import { Text, View } from "react-native";
+import { useAuth } from "@/context/AuthProvider";
 
 export default function Index() {
+  const { session, loading } = useAuth();
+  
+    if (loading) return null;
+  
+    if (session) {
+      return <Redirect href="/(tabs)/home" />;
+    }
+
   return (
     <View
       style={{
